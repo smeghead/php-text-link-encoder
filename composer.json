@@ -18,5 +18,13 @@
             "email": "smeghead7@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "scripts": {
+        "test": [
+            "php vendor/phpunit/phpunit/phpunit --colors test/"
+        ],
+        "phpstan": [
+            "vendor/bin/phpstan analyse"
+        ]
+    }
 }
