@@ -20,9 +20,14 @@ $ composer require smeghead/text-link-encoder
 ## Usage
 
 ```
-  $encoder = new TextLinkEncoder('Web Site: http://www.example.com/');
-  echo $encoder->encode();
-  // -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
+<?php
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+use Smeghead\TextLinkEncoder\TextLinkEncoder;
+
+$encoder = new TextLinkEncoder('Web Site: http://www.example.com/');
+echo $encoder->encode();
+// -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
 ```
 
 ## Development
