@@ -2,6 +2,11 @@
     "name": "smeghead/text-link-encoder",
     "description": "A library that converts any string containing a URL (such as a user-entered string) into a html string containing url link. Non-URL parts are html-encoded.",
     "type": "library",
+    "keywords": [
+        "text",
+        "link",
+        "encoder"
+    ],
     "require-dev": {
         "phpunit/phpunit": "^10.0",
         "phpstan/phpstan": "^1.0"
