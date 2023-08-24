@@ -14,7 +14,7 @@ A library that converts any string containing a URL (such as a user-entered stri
 ### From Composer
 
 ```bash
-$ composer require --dev smeghead/text-link-encoder
+$ composer require smeghead/text-link-encoder
 ```
 
 ## Usage
