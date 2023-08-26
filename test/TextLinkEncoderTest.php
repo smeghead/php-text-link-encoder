@@ -38,4 +38,13 @@ final class TextLinkEncoderTest extends TestCase
 
         $this->assertSame('<a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>', $sut->encode(), 'link tag.');
     }
+
+    public function testEncodeUrls(): void
+    {
+        $sut = new TextLinkEncoder('http://www.example.com/ http://www.example.com/index.html');
+
+        $expected = '<a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>'
+            . ' <a href="http://www.example.com/index.html" target="_blank" rel="noopener">http://www.example.com/index.html</a>';
+        $this->assertSame($expected, $sut->encode(), 'multiple link tag.');
+    }
 }

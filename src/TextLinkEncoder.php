@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder;
 
+use Smeghead\TextLinkEncoder\Segment\Segment;
+use Smeghead\TextLinkEncoder\Segment\TextSegment;
+use Smeghead\TextLinkEncoder\Segment\UrlSegment;
+
 /**
  * Escape text containing URLs.
  * URL is output as a link tag.
@@ -34,37 +38,37 @@ final class TextLinkEncoder
     public function encode(): string
     {
         $lines = preg_split('/\r?\n/', $this->text);
-        $outputLines = [];
+        $segmentLines = [];
         foreach ($lines as $line) {
-            if (preg_match_all('/https?:\/{2}[\w\/:%#\$&\?\(\)~\.=\+\-]+/', $line, $matches)) {
+            if (preg_match_all(UrlSegment::getSearchRegex(), $line, $matches)) {
                 try {
                     $restText = $line;
-                    $parts = [];
+                    $segments = [];
                     foreach ($matches[0] as $url) {
                         $position = mb_strpos($restText, $url);
                         if ($position === false) {
                             throw new \Exception('failed to search url string.');
                         }
                         // URLより前の部分をエスケープしてpartsに格納する。
-                        $parts[] = htmlspecialchars(mb_substr($restText, 0, $position), ENT_QUOTES);
+                        $segments[] = new TextSegment(mb_substr($restText, 0, $position));
                         // URLをリンクに変換する。
-                        $parts[] = sprintf(
-                            '<a href="%s" target="_blank" rel="noopener">%s</a>',
-                            htmlspecialchars($url, ENT_QUOTES),
-                            htmlspecialchars($url, ENT_QUOTES)
-                        );
+                        $segments[] = new UrlSegment($url);
                         $restText = mb_substr($restText, $position + mb_strlen($url));
                     }
                     // 残りをエスケープして格納する。
-                    $parts[] = htmlspecialchars($restText, ENT_QUOTES);
-                    $outputLines[] = implode('', $parts);
+                    $segments[] = new TextSegment($restText);
+                    $segmentLines[] = $segments;
                 } catch (\Exception $e) {
-                    $outputLines[] = htmlspecialchars($line, ENT_QUOTES); // 例外が発生した場合は、タグ化を諦めてエスケープした文字列を表示する。
+                    $segmentLines[] = [new TextSegment($line)]; // 例外が発生した場合は、タグ化を諦めてエスケープした文字列を表示する。
                 }
             } else {
-                $outputLines[] = htmlspecialchars($line, ENT_QUOTES);
+                $segmentLines[] = [new TextSegment($line)];
             }
         }
-        return implode("<br>\n", $outputLines);
+        return implode("<br>\n", array_map(function(array $segments): string {
+            return implode('', array_map(function(Segment $seg): string {
+                return $seg->toHtml();
+            }, $segments));
+        }, $segmentLines));
     }
 }

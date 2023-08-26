@@ -36,7 +36,7 @@ echo $encoder->encode();
 
 ```bash
 docker compose build
-docker compose run --rm php_cli bash
+docker compose run php_cli bash
 ```
 
 ### install dependencies
