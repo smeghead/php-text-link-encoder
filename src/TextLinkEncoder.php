@@ -16,8 +16,8 @@ use Smeghead\TextLinkEncoder\Segment\UrlSegment;
  * 
  * usage:
  * ```
- *   $encoder = new TextLinkEncoder('Web Site: http://www.example.com/');
- *   echo $encoder->encode();
+ *   $encoder = new TextLinkEncoder();
+ *   echo $encoder->encode('Web Site: http://www.example.com/');
  *   // -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
  * ```
  */
