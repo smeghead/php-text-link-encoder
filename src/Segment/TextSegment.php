@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Segment;
 
-final class TextSegment implements Segment {
+final class TextSegment implements Segment
+{
     public static function getSearchRegex(): string
     {
         return '/.*/';

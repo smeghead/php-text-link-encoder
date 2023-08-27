@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Segment;
 
-final class UrlSegment implements Segment {
+final class UrlSegment implements Segment
+{
     public static function getSearchRegex(): string
     {
         return '/https?:\/{2}[\w\/:%#\$&\?\(\)~\.=\+\-]+/';

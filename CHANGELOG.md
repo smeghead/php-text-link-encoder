@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Features
+
+ * re-degign classes.
+
 ## v0.0.0 (2023-08-24)
 
 ### Added

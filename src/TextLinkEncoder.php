@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder;
 
-use Smeghead\TextLinkEncoder\Segment\Segment;
+use Smeghead\TextLinkEncoder\Parse\ParseString;
+use Smeghead\TextLinkEncoder\Segment\Line;
 use Smeghead\TextLinkEncoder\Segment\TextSegment;
 use Smeghead\TextLinkEncoder\Segment\UrlSegment;
 
@@ -22,53 +23,45 @@ use Smeghead\TextLinkEncoder\Segment\UrlSegment;
  */
 final class TextLinkEncoder
 {
-    private string $text;
+    /**
+     */
+    public function __construct()
+    {
+    }
+
+    private const SEGMENT_CLASSES = [
+        UrlSegment::class,
+    ];
 
     /**
      * @param string|null $text target text.
-     */
-    public function __construct(?string $text)
-    {
-        $this->text = strval($text);
-    }
-
-    /**
      * @return string encoded text.
      */
-    public function encode(): string
+    public function encode($text): string
     {
-        $lines = preg_split('/\r?\n/', $this->text);
+        $lineStrings = preg_split('/\r?\n/', strval($text));
         $segmentLines = [];
-        foreach ($lines as $line) {
-            if (preg_match_all(UrlSegment::getSearchRegex(), $line, $matches)) {
-                try {
-                    $restText = $line;
-                    $segments = [];
-                    foreach ($matches[0] as $url) {
-                        $position = mb_strpos($restText, $url);
-                        if ($position === false) {
-                            throw new \Exception('failed to search url string.');
-                        }
-                        // URLより前の部分をエスケープしてpartsに格納する。
-                        $segments[] = new TextSegment(mb_substr($restText, 0, $position));
-                        // URLをリンクに変換する。
-                        $segments[] = new UrlSegment($url);
-                        $restText = mb_substr($restText, $position + mb_strlen($url));
-                    }
-                    // 残りをエスケープして格納する。
-                    $segments[] = new TextSegment($restText);
-                    $segmentLines[] = $segments;
-                } catch (\Exception $e) {
-                    $segmentLines[] = [new TextSegment($line)]; // 例外が発生した場合は、タグ化を諦めてエスケープした文字列を表示する。
-                }
-            } else {
-                $segmentLines[] = [new TextSegment($line)];
+        foreach ($lineStrings as $lineString) {
+            $parser = new ParseString($lineString);
+            $result = $parser->parse(self::SEGMENT_CLASSES);
+
+            $restText = $lineString;
+            $line = Line::fromEmptySegment();
+            while (mb_strlen($restText) > 0) {
+                $parser = new ParseString($restText);
+                $result = $parser->parse(self::SEGMENT_CLASSES);
+
+                $position = $result->nextPosition;
+                // URLより前の部分をエスケープしてpartsに格納する。
+                $line->add(new TextSegment(mb_substr($restText, 0, $position)));
+                // URLをリンクに変換する。
+                $line->add(new $result->class($result->matchString));
+                $restText = mb_substr($restText, $position + mb_strlen($result->matchString));
             }
+            $segmentLines[] = $line;
         }
-        return implode("<br>\n", array_map(function(array $segments): string {
-            return implode('', array_map(function(Segment $seg): string {
-                return $seg->toHtml();
-            }, $segments));
+        return implode("<br>\n", array_map(function(Line $line): string {
+            return $line->toHtml();
         }, $segmentLines));
     }
 }
