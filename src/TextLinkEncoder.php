@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Smeghead\TextLinkEncoder;
 
 use Smeghead\TextLinkEncoder\Parse\ParseString;
+use Smeghead\TextLinkEncoder\Segment\EmailSegment;
 use Smeghead\TextLinkEncoder\Segment\Line;
 use Smeghead\TextLinkEncoder\Segment\TextSegment;
 use Smeghead\TextLinkEncoder\Segment\UrlSegment;
@@ -31,6 +32,7 @@ final class TextLinkEncoder
 
     private const SEGMENT_CLASSES = [
         UrlSegment::class,
+        EmailSegment::class,
     ];
 
     /**

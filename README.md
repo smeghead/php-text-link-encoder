@@ -1,12 +1,12 @@
 # php-text-link-encoder
 
-A library that converts any string containing a URL (such as a user-entered string) into a html string containing url link. Non-URL parts are html-encoded.
+A library that converts any string containing URLs and Emails (such as a user-entered string) into a html string containing url link. Non-URL parts are html-encoded.
 
 ![Testing](https://github.com/smeghead/php-text-link-encoder/actions/workflows/php.yml/badge.svg?event=push) [![Latest Stable Version](http://poser.pugx.org/smeghead/text-link-encoder/v)](https://packagist.org/packages/smeghead/text-link-encoder) [![Total Downloads](http://poser.pugx.org/smeghead/text-link-encoder/downloads)](https://packagist.org/packages/smeghead/text-link-encoder) [![Latest Unstable Version](http://poser.pugx.org/smeghead/text-link-encoder/v/unstable)](https://packagist.org/packages/smeghead/text-link-encoder) [![License](http://poser.pugx.org/smeghead/text-link-encoder/license)](https://packagist.org/packages/smeghead/text-link-encoder) [![PHP Version Require](http://poser.pugx.org/smeghead/text-link-encoder/require/php)](https://packagist.org/packages/smeghead/text-link-encoder)
 
 ## Features
 
- * Converts urls in text to link tags.
+ * Converts urls and Emails in text to link tags.
  * Other parts are properly encoded.
 
 ## Install

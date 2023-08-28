@@ -62,4 +62,18 @@ EOS;
 EOS;
         $this->assertSame($expected, $sut->encode($src), 'multiple lines.');
     }
+
+    public function testEncodeEmail(): void
+    {
+        $sut = new TextLinkEncoder();
+
+        $this->assertSame('<a href="mailto:info@example.com">info@example.com</a>', $sut->encode('info@example.com'), 'email tag.');
+    }
+
+    public function testEncodeMultipleEmail(): void
+    {
+        $sut = new TextLinkEncoder();
+
+        $this->assertSame('<a href="mailto:info@example.com">info@example.com</a> <a href="mailto:support@example.com">support@example.com</a>', $sut->encode('info@example.com support@example.com'), 'email tag.');
+    }
 }
