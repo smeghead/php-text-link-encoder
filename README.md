@@ -28,6 +28,12 @@ use Smeghead\TextLinkEncoder\TextLinkEncoder;
 $encoder = new TextLinkEncoder();
 echo $encoder->encode('Web Site: http://www.example.com/');
 // -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
+
+echo $encoder->encode('Email: info@example.com');
+// -> Email: <a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a>
+
+echo $encoder->encode('<script>alert(1);</script> http://www.example.com/');
+// -> &lt;script&gt;alert(1);&lt;/script&gt; <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
 ```
 
 ## Development

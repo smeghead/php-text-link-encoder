@@ -67,13 +67,28 @@ EOS;
     {
         $sut = new TextLinkEncoder();
 
-        $this->assertSame('<a href="mailto:info@example.com">info@example.com</a>', $sut->encode('info@example.com'), 'email tag.');
+        $this->assertSame('<a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a>', $sut->encode('info@example.com'), 'email tag.');
     }
 
     public function testEncodeMultipleEmail(): void
     {
         $sut = new TextLinkEncoder();
 
-        $this->assertSame('<a href="mailto:info@example.com">info@example.com</a> <a href="mailto:support@example.com">support@example.com</a>', $sut->encode('info@example.com support@example.com'), 'email tag.');
+        $this->assertSame('<a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a> <a href="mailto:support@example.com" target="_blank" rel="noopener">support@example.com</a>', $sut->encode('info@example.com support@example.com'), 'email tag.');
+    }
+
+    public function testEncodeMultipleLines_urls_and_emails(): void
+    {
+        $sut = new TextLinkEncoder();
+
+        $src = <<<EOS
+        url > https://www.example.com/ email > info@example.com
+        email > info@example.com url > http://www.example.com/
+EOS;
+        $expected = <<<EOS
+        url &gt; <a href="https://www.example.com/" target="_blank" rel="noopener">https://www.example.com/</a> email &gt; <a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a><br>
+        email &gt; <a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a> url &gt; <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
+EOS;
+        $this->assertSame($expected, $sut->encode($src), 'multiple lines.');
     }
 }

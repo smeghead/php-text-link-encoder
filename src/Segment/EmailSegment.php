@@ -18,7 +18,7 @@ final class EmailSegment implements Segment
     public function toHtml(): string
     {
         return sprintf(
-            '<a href="mailto:%s">%s</a>',
+            '<a href="mailto:%s" target="_blank" rel="noopener">%s</a>',
             htmlspecialchars($this->segment, ENT_QUOTES),
             htmlspecialchars($this->segment, ENT_QUOTES)
         );
