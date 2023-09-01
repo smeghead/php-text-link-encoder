@@ -44,11 +44,8 @@ final class TextLinkEncoder
         $lineStrings = preg_split('/\r?\n/', strval($text));
         $segmentLines = [];
         foreach ($lineStrings as $lineString) {
-            $parser = new ParseString($lineString);
-            $result = $parser->parse(self::SEGMENT_CLASSES);
-
             $restText = $lineString;
-            $line = Line::fromEmptySegment();
+            $line = new Line();
             while (mb_strlen($restText) > 0) {
                 $parser = new ParseString($restText);
                 $result = $parser->parse(self::SEGMENT_CLASSES);

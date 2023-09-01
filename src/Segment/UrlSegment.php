@@ -17,10 +17,11 @@ final class UrlSegment implements Segment
 
     public function toHtml(): string
     {
+        $encoded = htmlspecialchars($this->segment, ENT_QUOTES);
         return sprintf(
             '<a href="%s" target="_blank" rel="noopener">%s</a>',
-            htmlspecialchars($this->segment, ENT_QUOTES),
-            htmlspecialchars($this->segment, ENT_QUOTES)
+            $encoded,
+            $encoded
         );
     }
 }

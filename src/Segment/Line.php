@@ -9,25 +9,13 @@ final class Line
     /** @var Segment[] */
     private array $segments = [];
 
-    private function __construct()
+    public function __construct()
     {
     }
 
     public function add(Segment $segment): void
     {
         $this->segments[] = $segment;
-    }
-
-    public static function fromSegment(Segment $segment): self
-    {
-        $line = new Line();
-        $line->add($segment);
-        return $line;
-    }
-
-    public static function fromEmptySegment(): self
-    {
-        return new Line();
     }
 
     public function toHtml(): string
