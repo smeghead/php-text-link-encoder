@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder;
 
+use Smeghead\TextLinkEncoder\Config\Settings;
 use Smeghead\TextLinkEncoder\Parse\ParseString;
 use Smeghead\TextLinkEncoder\Segment\EmailSegment;
 use Smeghead\TextLinkEncoder\Segment\Line;
@@ -26,7 +27,7 @@ final class TextLinkEncoder
 {
     /**
      */
-    public function __construct()
+    public function __construct(private Settings $settings)
     {
     }
 
@@ -59,7 +60,7 @@ final class TextLinkEncoder
             }
             $segmentLines[] = $line;
         }
-        return implode("<br>\n", array_map(function(Line $line): string {
+        return implode(sprintf("%s\n", $this->settings->getBrTag() ? '<br>' : ''), array_map(function(Line $line): string {
             return $line->toHtml();
         }, $segmentLines));
     }
