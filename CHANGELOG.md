@@ -3,6 +3,7 @@
 ### Features
 
  * Removed unnecessary processing
+ * Added settings object to TextLinkEncoder's constructor.
 
 ## v0.1.0 (2023-08-29)
 
