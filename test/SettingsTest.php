@@ -26,4 +26,13 @@ final class SettingsTest extends TestCase
         $this->assertSame(true, $sut->getBrTag(), 'original: not changed');
         $this->assertSame(false, $sut2->getBrTag(), 'new: updated');
     }
+
+    public function testLinkTarget(): void
+    {
+        $sut = new Settings();
+        $sut2 = $sut->linkTarget('_self');
+
+        $this->assertSame('_blank', $sut->getLinkTarget(), 'original: not changed');
+        $this->assertSame('_self', $sut2->getLinkTarget(), 'new: updated');
+    }
 }

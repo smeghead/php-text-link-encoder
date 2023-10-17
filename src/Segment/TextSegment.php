@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Segment;
 
+use Smeghead\TextLinkEncoder\Config\Settings;
+
 final class TextSegment implements Segment
 {
     public static function getSearchRegex(): string
@@ -11,7 +13,8 @@ final class TextSegment implements Segment
         return '/.*/';
     }
 
-    public function __construct(private string $segment)
+    // @phpstan-ignore-next-line
+    public function __construct(private Settings $settings, private string $segment)
     {
     }
 

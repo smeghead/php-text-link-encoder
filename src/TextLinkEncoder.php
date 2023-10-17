@@ -53,9 +53,9 @@ final class TextLinkEncoder
 
                 $position = $result->nextPosition;
                 // URLより前の部分をエスケープしてpartsに格納する。
-                $line->add(new TextSegment(mb_substr($restText, 0, $position)));
+                $line->add(new TextSegment($this->settings, mb_substr($restText, 0, $position)));
                 // URLをリンクに変換する。
-                $line->add(new $result->class($result->matchString));
+                $line->add(new $result->class($this->settings, $result->matchString));
                 $restText = mb_substr($restText, $position + mb_strlen($result->matchString));
             }
             $segmentLines[] = $line;

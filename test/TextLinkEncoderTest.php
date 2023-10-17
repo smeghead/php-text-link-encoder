@@ -40,6 +40,20 @@ final class TextLinkEncoderTest extends TestCase
         $this->assertSame('<a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>', $sut->encode('http://www.example.com/'), 'link tag.');
     }
 
+    public function testEncodeUrlLinkTargetSelf(): void
+    {
+        $sut = new TextLinkEncoder((new Settings())->linkTarget('_self'));
+
+        $this->assertSame('<a href="http://www.example.com/" target="_self" rel="noopener">http://www.example.com/</a>', $sut->encode('http://www.example.com/'), 'link tag.');
+    }
+
+    public function testEncodeUrlLinkTargetXss(): void
+    {
+        $sut = new TextLinkEncoder((new Settings())->linkTarget('<script>'));
+
+        $this->assertSame('<a href="http://www.example.com/" target="&lt;script&gt;" rel="noopener">http://www.example.com/</a>', $sut->encode('http://www.example.com/'), 'link tag.');
+    }
+
     public function testEncodeUrls(): void
     {
         $sut = new TextLinkEncoder(new Settings());
@@ -84,6 +98,13 @@ EOS;
         $sut = new TextLinkEncoder(new Settings());
 
         $this->assertSame('<a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a>', $sut->encode('info@example.com'), 'email tag.');
+    }
+
+    public function testEncodeEmailLinkTargetSelf(): void
+    {
+        $sut = new TextLinkEncoder((new Settings())->linkTarget('_self'));
+
+        $this->assertSame('<a href="mailto:info@example.com" target="_self" rel="noopener">info@example.com</a>', $sut->encode('info@example.com'), 'email tag.');
     }
 
     public function testEncodeMultipleEmail(): void
