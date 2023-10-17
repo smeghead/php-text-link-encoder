@@ -24,7 +24,7 @@ $ composer require smeghead/text-link-encoder
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 use Smeghead\TextLinkEncoder\TextLinkEncoder;
-use Smeghead\TextLinkEncoder\Settings;
+use Smeghead\TextLinkEncoder\Config\Settings;
 
 $encoder = new TextLinkEncoder(new Settings());
 echo $encoder->encode('Web Site: http://www.example.com/');
@@ -35,6 +35,25 @@ echo $encoder->encode('Email: info@example.com');
 
 echo $encoder->encode('<script>alert(1);</script> http://www.example.com/');
 // -> &lt;script&gt;alert(1);&lt;/script&gt; <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
+```
+
+Settings
+
+```php
+<?php
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+use Smeghead\TextLinkEncoder\TextLinkEncoder;
+use Smeghead\TextLinkEncoder\Config\Settings;
+
+$encoder = new TextLinkEncoder(
+    (new Settings())
+    ->linkTarget('_self')
+    ->convertNewLineToBrTag(false)
+);
+echo $encoder->encode("Web Site: http://www.example.com/\nDescription: ...");
+// -> Web Site: <a href="http://www.example.com/" target="_self" rel="noopener">http://www.example.com/</a>
+//    Description: ...
 ```
 
 ## Development

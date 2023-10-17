@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Segment;
 
+use Smeghead\TextLinkEncoder\Config\Settings;
+
 final class EmailSegment implements Segment
 {
     public static function getSearchRegex(): string
@@ -11,7 +13,7 @@ final class EmailSegment implements Segment
         return '/[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}/';
     }
 
-    public function __construct(private string $segment)
+    public function __construct(private Settings $settings, private string $segment)
     {
     }
 
@@ -19,8 +21,9 @@ final class EmailSegment implements Segment
     {
         $encoded = htmlspecialchars($this->segment, ENT_QUOTES);
         return sprintf(
-            '<a href="mailto:%s" target="_blank" rel="noopener">%s</a>',
+            '<a href="mailto:%s" target="%s" rel="noopener">%s</a>',
             $encoded,
+            htmlspecialchars($this->settings->getLinkTarget(), ENT_QUOTES),
             $encoded
         );
     }
