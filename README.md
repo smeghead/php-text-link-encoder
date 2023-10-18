@@ -28,13 +28,13 @@ use Smeghead\TextLinkEncoder\Config\Settings;
 
 $encoder = new TextLinkEncoder(new Settings());
 echo $encoder->encode('Web Site: http://www.example.com/');
-// -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
+// -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noreferrer noopener">http://www.example.com/</a>
 
 echo $encoder->encode('Email: info@example.com');
-// -> Email: <a href="mailto:info@example.com" target="_blank" rel="noopener">info@example.com</a>
+// -> Email: <a href="mailto:info@example.com" target="_blank" rel="noreferrer noopener">info@example.com</a>
 
 echo $encoder->encode('<script>alert(1);</script> http://www.example.com/');
-// -> &lt;script&gt;alert(1);&lt;/script&gt; <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
+// -> &lt;script&gt;alert(1);&lt;/script&gt; <a href="http://www.example.com/" target="_blank" rel="noreferrer noopener">http://www.example.com/</a>
 ```
 
 Settings
@@ -52,7 +52,7 @@ $encoder = new TextLinkEncoder(
     ->convertNewLineToBrTag(false)
 );
 echo $encoder->encode("Web Site: http://www.example.com/\nDescription: ...");
-// -> Web Site: <a href="http://www.example.com/" target="_self" rel="noopener">http://www.example.com/</a>
+// -> Web Site: <a href="http://www.example.com/" target="_self" rel="noreferrer noopener">http://www.example.com/</a>
 //    Description: ...
 ```
 

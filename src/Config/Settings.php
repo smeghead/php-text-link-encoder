@@ -8,6 +8,7 @@ final class Settings
 {
     private bool $brTag = true;
     private string $linkTarget = '_blank';
+    private string $linkRel = 'noreferrer noopener';
 
     public function getBrTag(): bool
     {
@@ -17,6 +18,11 @@ final class Settings
     public function getLinkTarget(): string
     {
         return $this->linkTarget;
+    }
+
+    public function getLinkRel(): string
+    {
+        return $this->linkRel;
     }
 
     public function convertNewLineToBrTag(bool $value): self
@@ -30,6 +36,13 @@ final class Settings
     {
         $cloned = clone $this;
         $cloned->linkTarget = $linkTarget;
+        return $cloned;
+    }
+
+    public function linkRel(string $linkRel): self
+    {
+        $cloned = clone $this;
+        $cloned->linkRel = $linkRel;
         return $cloned;
     }
 }

@@ -35,4 +35,13 @@ final class SettingsTest extends TestCase
         $this->assertSame('_blank', $sut->getLinkTarget(), 'original: not changed');
         $this->assertSame('_self', $sut2->getLinkTarget(), 'new: updated');
     }
+
+    public function testLinkRel(): void
+    {
+        $sut = new Settings();
+        $sut2 = $sut->linkRel('alternate');
+
+        $this->assertSame('noreferrer noopener', $sut->getLinkRel(), 'original: not changed');
+        $this->assertSame('alternate', $sut2->getLinkRel(), 'new: updated');
+    }
 }
