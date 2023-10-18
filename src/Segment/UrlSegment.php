@@ -21,7 +21,7 @@ final class UrlSegment implements Segment
     {
         $encoded = htmlspecialchars($this->segment, ENT_QUOTES);
         return sprintf(
-            '<a href="%s" target="%s" rel="noopener">%s</a>',
+            '<a href="%s" target="%s" rel="noreferrer noopener">%s</a>',
             $encoded,
             htmlspecialchars($this->settings->getLinkTarget(), ENT_QUOTES),
             $encoded

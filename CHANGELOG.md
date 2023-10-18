@@ -5,6 +5,7 @@
  * Removed unnecessary processing
  * Added settings object to TextLinkEncoder's constructor.
  * Added link target attribute setting.
+ * Added link rel attribute setting.
 
 ## v0.1.0 (2023-08-29)
 
