@@ -24,9 +24,9 @@ $ composer require smeghead/text-link-encoder
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 use Smeghead\TextLinkEncoder\TextLinkEncoder;
-use Smeghead\TextLinkEncoder\Config\Settings;
+use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 
-$encoder = new TextLinkEncoder(new Settings());
+$encoder = new TextLinkEncoder(new TextLinkEncoderSettings());
 echo $encoder->encode('Web Site: http://www.example.com/');
 // -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noreferrer noopener">http://www.example.com/</a>
 
@@ -44,10 +44,10 @@ Settings
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 use Smeghead\TextLinkEncoder\TextLinkEncoder;
-use Smeghead\TextLinkEncoder\Config\Settings;
+use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 
 $encoder = new TextLinkEncoder(
-    (new Settings())
+    (new TextLinkEncoderSettings())
     ->linkTarget('_self')
     ->convertNewLineToBrTag(false)
 );
