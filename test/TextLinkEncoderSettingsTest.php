@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Smeghead\TextLinkEncoder\Config\Settings;
+use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 
-final class SettingsTest extends TestCase
+final class TextLinkEncoderSettingsTest extends TestCase
 {
     public function setUp(): void
     {
@@ -13,14 +13,14 @@ final class SettingsTest extends TestCase
 
     public function testDefaultSettings(): void
     {
-        $sut = new Settings();
+        $sut = new TextLinkEncoderSettings();
 
         $this->assertSame(true, $sut->getBrTag(), 'make new line <br>');
     }
 
     public function testNoBrTag(): void
     {
-        $sut = new Settings();
+        $sut = new TextLinkEncoderSettings();
         $sut2 = $sut->convertNewLineToBrTag(false);
 
         $this->assertSame(true, $sut->getBrTag(), 'original: not changed');
@@ -29,7 +29,7 @@ final class SettingsTest extends TestCase
 
     public function testLinkTarget(): void
     {
-        $sut = new Settings();
+        $sut = new TextLinkEncoderSettings();
         $sut2 = $sut->linkTarget('_self');
 
         $this->assertSame('_blank', $sut->getLinkTarget(), 'original: not changed');
@@ -38,7 +38,7 @@ final class SettingsTest extends TestCase
 
     public function testLinkRel(): void
     {
-        $sut = new Settings();
+        $sut = new TextLinkEncoderSettings();
         $sut2 = $sut->linkRel('alternate');
 
         $this->assertSame('noreferrer noopener', $sut->getLinkRel(), 'original: not changed');

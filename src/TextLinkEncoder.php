@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder;
 
-use Smeghead\TextLinkEncoder\Config\Settings;
+use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 use Smeghead\TextLinkEncoder\Parse\ParseString;
 use Smeghead\TextLinkEncoder\Segment\EmailSegment;
 use Smeghead\TextLinkEncoder\Segment\Line;
@@ -27,7 +27,7 @@ final class TextLinkEncoder
 {
     /**
      */
-    public function __construct(private Settings $settings)
+    public function __construct(private TextLinkEncoderSettings $settings)
     {
     }
 

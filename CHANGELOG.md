@@ -6,6 +6,7 @@
  * Added settings object to TextLinkEncoder's constructor.
  * Added link target attribute setting.
  * Added link rel attribute setting.
+ * rename Settings to TextLinkEncoderSettings.
 
 ## v0.1.0 (2023-08-29)
 

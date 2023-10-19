@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Config;
 
-final class Settings
+final class TextLinkEncoderSettings
 {
     private bool $brTag = true;
     private string $linkTarget = '_blank';

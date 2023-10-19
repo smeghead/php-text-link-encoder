@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Segment;
 
-use Smeghead\TextLinkEncoder\Config\Settings;
+use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 
 final class EmailSegment implements Segment
 {
@@ -13,7 +13,7 @@ final class EmailSegment implements Segment
         return '/[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}/';
     }
 
-    public function __construct(private Settings $settings, private string $segment)
+    public function __construct(private TextLinkEncoderSettings $settings, private string $segment)
     {
     }
 
