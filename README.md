@@ -56,6 +56,7 @@ echo $encoder->encode("Web Site: http://www.example.com/\nDescription: ...");
 //    Description: ...
 ```
 
+
 ## Development
 
 ### Open shell
@@ -76,6 +77,10 @@ composer install
 ```bash
 composer test
 ```
+
+## Class Diagram
+
+![Class Diagram](diagram.png)
 
 ## CONTRIBUTING
 

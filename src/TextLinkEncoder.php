@@ -60,7 +60,7 @@ final class TextLinkEncoder
             }
             $segmentLines[] = $line;
         }
-        return implode(sprintf("%s\n", $this->settings->getBrTag() ? '<br>' : ''), array_map(function(Line $line): string {
+        return implode(sprintf("%s\n", $this->settings->value()->brTag ? '<br>' : ''), array_map(function(Line $line): string {
             return $line->toHtml();
         }, $segmentLines));
     }

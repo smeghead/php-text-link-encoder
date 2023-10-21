@@ -7,6 +7,7 @@
  * Added link target attribute setting.
  * Added link rel attribute setting.
  * rename Settings to TextLinkEncoderSettings.
+ * Changed setting value structure.
 
 ## v0.1.0 (2023-08-29)
 
