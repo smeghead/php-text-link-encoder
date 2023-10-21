@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Smeghead\TextLinkEncoder\Segment;
+namespace Smeghead\TextLinkEncoder\Element;
+
+use Smeghead\TextLinkEncoder\Element\Segment\Segment;
 
 final class Line
 {
-    /** @var Segment[] */
+    /** @var \Smeghead\TextLinkEncoder\Element\Segment\Segment[] */
     private array $segments = [];
 
     public function __construct()

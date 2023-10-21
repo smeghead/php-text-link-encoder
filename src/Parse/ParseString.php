@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Smeghead\TextLinkEncoder\Parse;
 
-use Smeghead\TextLinkEncoder\Segment\TextSegment;
+use Smeghead\TextLinkEncoder\Element\Segment\TextSegment;
 
 final class ParseString
 {

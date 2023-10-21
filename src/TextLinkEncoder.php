@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Smeghead\TextLinkEncoder;
 
 use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
+use Smeghead\TextLinkEncoder\Element\Line;
+use Smeghead\TextLinkEncoder\Element\Segment\EmailSegment;
+use Smeghead\TextLinkEncoder\Element\Segment\TextSegment;
+use Smeghead\TextLinkEncoder\Element\Segment\UrlSegment;
 use Smeghead\TextLinkEncoder\Parse\ParseString;
-use Smeghead\TextLinkEncoder\Segment\EmailSegment;
-use Smeghead\TextLinkEncoder\Segment\Line;
-use Smeghead\TextLinkEncoder\Segment\TextSegment;
-use Smeghead\TextLinkEncoder\Segment\UrlSegment;
 
 /**
  * Escape text containing URLs.

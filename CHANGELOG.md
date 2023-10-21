@@ -8,6 +8,7 @@
  * Added link rel attribute setting.
  * rename Settings to TextLinkEncoderSettings.
  * Changed setting value structure.
+ * Changed Segment package location.
 
 ## v0.1.0 (2023-08-29)
 

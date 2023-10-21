@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Smeghead\TextLinkEncoder\Segment;
+namespace Smeghead\TextLinkEncoder\Element\Segment;
 
 use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 
