@@ -6,43 +6,49 @@ namespace Smeghead\TextLinkEncoder\Config;
 
 final class TextLinkEncoderSettings
 {
-    private bool $brTag = true;
-    private string $linkTarget = '_blank';
-    private string $linkRel = 'noreferrer noopener';
+    private Value $value;
 
-    public function getBrTag(): bool
+    public function __construct()
     {
-        return $this->brTag;
+        $this->value = new Value(true, '_blank', 'noreferrer noopener');
     }
 
-    public function getLinkTarget(): string
+    public function value(): Value
     {
-        return $this->linkTarget;
-    }
-
-    public function getLinkRel(): string
-    {
-        return $this->linkRel;
+        return $this->value;
     }
 
     public function convertNewLineToBrTag(bool $value): self
     {
         $cloned = clone $this;
-        $cloned->brTag = $value;
+        $cloned->value = clone $this->value;
+        $cloned->value->brTag = $value;
         return $cloned;
     }
 
     public function linkTarget(string $linkTarget): self
     {
         $cloned = clone $this;
-        $cloned->linkTarget = $linkTarget;
+        $cloned->value = clone $this->value;
+        $cloned->value->linkTarget = $linkTarget;
         return $cloned;
     }
 
     public function linkRel(string $linkRel): self
     {
         $cloned = clone $this;
-        $cloned->linkRel = $linkRel;
+        $cloned->value = clone $this->value;
+        $cloned->value->linkRel = $linkRel;
         return $cloned;
+    }
+}
+
+final class Value {
+    public function __construct(
+        public bool $brTag,
+        public string $linkTarget,
+        public string $linkRel
+    )
+    {
     }
 }
