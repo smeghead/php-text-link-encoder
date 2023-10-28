@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## v0.2.0 (2023-10-28)
+
 ### Features
 
  * Removed unnecessary processing

@@ -18,7 +18,7 @@ use Smeghead\TextLinkEncoder\Parse\ParseString;
  * 
  * usage:
  * ```
- *   $encoder = new TextLinkEncoder();
+ *   $encoder = new TextLinkEncoder(new TextLinkEncoderSettings());
  *   echo $encoder->encode('Web Site: http://www.example.com/');
  *   // -> Web Site: <a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>
  * ```
