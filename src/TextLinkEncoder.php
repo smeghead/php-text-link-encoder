@@ -25,10 +25,12 @@ use Smeghead\TextLinkEncoder\Parse\ParseString;
  */
 final class TextLinkEncoder
 {
+    private TextLinkEncoderSettings $settings;
     /**
      */
-    public function __construct(private TextLinkEncoderSettings $settings)
+    public function __construct(TextLinkEncoderSettings $settings)
     {
+        $this->settings = $settings;
     }
 
     private const SEGMENT_CLASSES = [
@@ -60,7 +62,7 @@ final class TextLinkEncoder
             }
             $segmentLines[] = $line;
         }
-        return implode(sprintf("%s\n", $this->settings->value()->brTag ? '<br>' : ''), array_map(function(Line $line): string {
+        return implode(sprintf("%s\n", $this->settings->value()->brTag ? '<br>' : ''), array_map(function (Line $line): string {
             return $line->toHtml();
         }, $segmentLines));
     }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Features
+
+ * add PHP7.4 Support
+
 ## v0.2.0 (2023-10-28)
 
 ### Features

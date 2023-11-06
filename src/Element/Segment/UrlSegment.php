@@ -8,13 +8,18 @@ use Smeghead\TextLinkEncoder\Config\TextLinkEncoderSettings;
 
 final class UrlSegment implements Segment
 {
+    private TextLinkEncoderSettings $settings;
+    private string $segment;
+
     public static function getSearchRegex(): string
     {
         return '/https?:\/{2}[\w\/:%#\$&\?\(\)~\.=\+\-]+/';
     }
 
-    public function __construct(private TextLinkEncoderSettings $settings, private string $segment)
+    public function __construct(TextLinkEncoderSettings $settings, string $segment)
     {
+        $this->settings = $settings;
+        $this->segment = $segment;
     }
 
     public function toHtml(): string

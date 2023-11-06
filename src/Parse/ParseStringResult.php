@@ -6,11 +6,17 @@ namespace Smeghead\TextLinkEncoder\Parse;
 
 final class ParseStringResult
 {
+    public int $nextPosition;
+    public string $class;
+    public string $matchString;
+
     public function __construct(
-        public int $nextPosition,
-        public string $class,
-        public string $matchString
-    )
-    {
+        int $nextPosition,
+        string $class,
+        string $matchString
+    ) {
+        $this->nextPosition = $nextPosition;
+        $this->class = $class;
+        $this->matchString = $matchString;
     }
 }

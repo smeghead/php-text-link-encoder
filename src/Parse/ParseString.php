@@ -8,10 +8,12 @@ use Smeghead\TextLinkEncoder\Element\Segment\TextSegment;
 
 final class ParseString
 {
+    private string $restString;
+
     public function __construct(
-        private string $restString
-    )
-    {
+        string $restString
+    ) {
+        $this->restString = $restString;
     }
 
     /**
@@ -22,7 +24,7 @@ final class ParseString
         $matcheResults = [];
         foreach ($classes as $class) {
             $regexp = $class::getSearchRegex();
-            if ( ! preg_match($regexp, $this->restString, $matches)) {
+            if (!preg_match($regexp, $this->restString, $matches)) {
                 continue;
             }
             $index = mb_strpos($this->restString, $matches[0]);
