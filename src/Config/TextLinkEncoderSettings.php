@@ -43,12 +43,19 @@ final class TextLinkEncoderSettings
     }
 }
 
-final class Value {
+final class Value
+{
+    public bool $brTag;
+    public string $linkTarget;
+    public string $linkRel;
+
     public function __construct(
-        public bool $brTag,
-        public string $linkTarget,
-        public string $linkRel
-    )
-    {
+        bool $brTag,
+        string $linkTarget,
+        string $linkRel
+    ) {
+        $this->brTag = $brTag;
+        $this->linkTarget = $linkTarget;
+        $this->linkRel = $linkRel;
     }
 }
